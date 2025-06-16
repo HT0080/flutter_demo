@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class HiDefend {
   run(Widget app) {
@@ -16,7 +17,7 @@ class HiDefend {
     };
 
     runZonedGuarded(() {
-      runApp(app);
+      runApp(ProviderScope(child: app));
     }, (e, s) => _reportError(e, s));
   }
 

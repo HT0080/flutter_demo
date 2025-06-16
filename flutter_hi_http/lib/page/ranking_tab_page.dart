@@ -4,14 +4,15 @@ import 'package:flutter_hi_http/http/dao/ranking_dao.dart';
 import 'package:flutter_hi_http/model/ranking_mo.dart';
 import 'package:flutter_hi_http/model/video_model.dart';
 import 'package:flutter_hi_http/widget/video_large_card.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class RankingTabPage extends StatefulWidget {
+class RankingTabPage extends ConsumerStatefulWidget {
   final String sort;
 
   const RankingTabPage({super.key, required this.sort});
 
   @override
-  State<RankingTabPage> createState() => _RankingTabPageState();
+  ConsumerState<RankingTabPage> createState() => _RankingTabPageState();
 }
 
 class _RankingTabPageState

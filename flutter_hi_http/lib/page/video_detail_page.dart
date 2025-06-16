@@ -9,6 +9,7 @@ import 'package:flutter_hi_http/http/dao/favorite_dao.dart';
 import 'package:flutter_hi_http/http/dao/video_detail_dao.dart';
 import 'package:flutter_hi_http/model/video_detail_mo.dart';
 import 'package:flutter_hi_http/model/video_model.dart';
+import 'package:flutter_hi_http/provider/hi_provider.dart';
 import 'package:flutter_hi_http/provider/theme_provider.dart';
 import 'package:flutter_hi_http/util/toast.dart';
 import 'package:flutter_hi_http/util/view_util.dart';
@@ -20,18 +21,19 @@ import 'package:flutter_hi_http/widget/video_header.dart';
 import 'package:flutter_hi_http/widget/video_large_card.dart';
 import 'package:flutter_hi_http/widget/video_toolbar.dart';
 import 'package:flutter_hi_http/widget/video_view.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:provider/provider.dart';
 
-class VideoDetailPage extends StatefulWidget {
+class VideoDetailPage extends ConsumerStatefulWidget {
   final VideoModel videoModel;
 
   const VideoDetailPage(this.videoModel);
 
   @override
-  State<VideoDetailPage> createState() => _VideoDetailPageState();
+  ConsumerState<VideoDetailPage> createState() => _VideoDetailPageState();
 }
 
-class _VideoDetailPageState extends State<VideoDetailPage>
+class _VideoDetailPageState extends ConsumerState<VideoDetailPage>
     with TickerProviderStateMixin {
   late TabController _controller;
   List tabs = ["简介", "评论"];
@@ -117,7 +119,7 @@ class _VideoDetailPageState extends State<VideoDetailPage>
   }
 
   _buildTabNavigation() {
-    var thmemeProvider = context.watch<ThemeProvider>();
+    var thmemeProvider = ref.watch(rTopProvider);
 
     return Material(
       elevation: thmemeProvider.isDark() ? 1 : 5,

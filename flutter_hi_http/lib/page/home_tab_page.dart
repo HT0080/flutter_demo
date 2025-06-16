@@ -7,16 +7,17 @@ import 'package:flutter_hi_http/model/video_model.dart';
 import 'package:flutter_hi_http/util/toast.dart';
 import 'package:flutter_hi_http/widget/hi_banner.dart';
 import 'package:flutter_hi_http/widget/video_card.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
-class HomeTabPage extends StatefulWidget {
+class HomeTabPage extends ConsumerStatefulWidget {
   final String categoryName;
   final List<BannerMo>? bannerList;
 
   const HomeTabPage({super.key, required this.categoryName, this.bannerList});
 
   @override
-  State<HomeTabPage> createState() => _HomeTabPageState();
+  ConsumerState<HomeTabPage> createState() => _HomeTabPageState();
 }
 
 class _HomeTabPageState

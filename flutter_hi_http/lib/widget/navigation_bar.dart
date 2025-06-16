@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_hi_http/provider/hi_provider.dart';
 import 'package:flutter_hi_http/provider/theme_provider.dart';
 import 'package:flutter_hi_http/util/color.dart';
 import 'package:flutter_hi_http/util/view_util.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:provider/provider.dart';
 
 enum StatusStyle { LIGHT_CONTENT, DARK_CONTENT }
 
-class HNavigationBar extends StatefulWidget {
+class HNavigationBar extends ConsumerStatefulWidget {
   final StatusStyle statusStyle;
   final Color color;
   final double height;
@@ -22,16 +24,16 @@ class HNavigationBar extends StatefulWidget {
   });
 
   @override
-  State<HNavigationBar> createState() => _HNavigationBarState();
+  ConsumerState<HNavigationBar> createState() => _HNavigationBarState();
 }
 
-class _HNavigationBarState extends State<HNavigationBar> {
+class _HNavigationBarState extends ConsumerState<HNavigationBar> {
   // ignore: prefer_typing_uninitialized_variables
   late StatusStyle _statusStyle;
   late Color _color;
   @override
   Widget build(BuildContext context) {
-    var thmemeProvider = context.watch<ThemeProvider>();
+    var thmemeProvider = ref.watch(rTopProvider);
 
     if (thmemeProvider.isDark()) {
       _color = HiColor.dark_bg;

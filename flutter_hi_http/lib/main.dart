@@ -23,28 +23,26 @@ import 'package:flutter_hi_http/provider/theme_provider.dart';
 import 'package:flutter_hi_http/util/color.dart';
 import 'package:flutter_hi_http/util/hi_defend.dart';
 import 'package:flutter_hi_http/util/toast.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() async {
   // WidgetsFlutterBinding.ensureInitialized();
   // await HiCache.preInit();
+
   HiDefend().run(BiliApp());
 }
 
-class BiliApp extends StatefulWidget {
-  const BiliApp({super.key});
+class BiliApp extends ConsumerWidget {
+  BiliApp({super.key});
 
-  @override
-  State<BiliApp> createState() => _BiliAppState();
-}
-
-class _BiliAppState extends State<BiliApp> {
   final BiliRouteDelegate _routeDelegate = BiliRouteDelegate();
   // final BiliRouteInformationParser _routeInformationParser =
   //     BiliRouteInformationParser();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final themeProvider = rTopProvider;
+
     return FutureBuilder<HiCache>(
       future: HiCache.preInit(),
       builder: (BuildContext context, AsyncSnapshot<HiCache> snapshot) {
@@ -52,22 +50,17 @@ class _BiliAppState extends State<BiliApp> {
             snapshot.connectionState == ConnectionState.done
                 ? Router(routerDelegate: _routeDelegate)
                 : Scaffold(body: Center(child: CircularProgressIndicator()));
-        return MultiProvider(
-          providers: topProviders,
-          child: Consumer<ThemeProvider>(
-            builder: (
-              BuildContext context,
-              ThemeProvider themeProvider,
-              Widget? child,
-            ) {
-              return MaterialApp(
-                home: widget,
-                theme: themeProvider.getTheme(),
-                darkTheme: themeProvider.getTheme(isDarkMode: true),
-                themeMode: themeProvider.getThemeMode(),
-              );
-            },
-          ),
+        return Consumer(
+          builder: (context, ref, child) {
+            final themeProviderState = ref.watch(themeProvider);
+
+            return MaterialApp(
+              home: widget,
+              theme: themeProviderState.getTheme(),
+              darkTheme: themeProviderState.getTheme(isDarkMode: true),
+              themeMode: themeProviderState.getThemeMode(),
+            );
+          },
         );
       },
     );

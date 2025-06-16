@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hi_http/model/video_model.dart';
 import 'package:flutter_hi_http/navigator/hi_navigator.dart';
+import 'package:flutter_hi_http/provider/hi_provider.dart';
 import 'package:flutter_hi_http/provider/theme_provider.dart';
 import 'package:flutter_hi_http/util/format_util.dart';
 import 'package:flutter_hi_http/util/view_util.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:provider/provider.dart';
 import 'package:transparent_image/transparent_image.dart';
 
-class VideoCard extends StatelessWidget {
+class VideoCard extends ConsumerWidget {
   final VideoModel videoMo;
 
   const VideoCard({super.key, required this.videoMo});
 
   @override
-  Widget build(BuildContext context) {
-    var thmemeProvider = context.watch<ThemeProvider>();
+  Widget build(BuildContext context, WidgetRef ref) {
+    var thmemeProvider = ref.watch(rTopProvider);
 
     Color textColor = thmemeProvider.isDark() ? Colors.white70 : Colors.black87;
 
@@ -48,6 +50,7 @@ class VideoCard extends StatelessWidget {
     return Stack(
       children: [
         cachedImage(videoMo.cover, width: size.width / 2 - 8, height: 120),
+
         Positioned(
           left: 0,
           right: 0,

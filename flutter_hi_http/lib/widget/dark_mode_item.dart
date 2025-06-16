@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hi_http/navigator/hi_navigator.dart';
+import 'package:flutter_hi_http/provider/hi_provider.dart';
 import 'package:flutter_hi_http/provider/theme_provider.dart';
 import 'package:flutter_hi_http/util/view_util.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:provider/provider.dart';
 
-class DarkModeItem extends StatelessWidget {
+class DarkModeItem extends ConsumerWidget {
   const DarkModeItem({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    var themeProvider = context.watch<ThemeProvider>();
+  Widget build(BuildContext context, WidgetRef ref) {
+    var themeProvider = ref.watch(rTopProvider);
     var icon =
         themeProvider.isDark()
             ? Icons.nightlight_round

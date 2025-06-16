@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hi_http/provider/hi_provider.dart';
 import 'package:flutter_hi_http/provider/theme_provider.dart';
 import 'package:flutter_hi_http/util/color.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:provider/provider.dart';
 
-class HiTab extends StatelessWidget {
+class HiTab extends ConsumerWidget {
   final List<Widget> tabs;
   final TabController controller;
   final double borderWidth;
@@ -22,8 +24,8 @@ class HiTab extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    var thmemeProvider = context.watch<ThemeProvider>();
+  Widget build(BuildContext context, WidgetRef ref) {
+    var thmemeProvider = ref.watch(rTopProvider);
     Color _unselectedLabelColor =
         thmemeProvider.isDark() ? Colors.white70 : unselectedLabelColor;
 

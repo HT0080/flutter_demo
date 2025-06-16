@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hi_http/http/core/hi_error.dart';
 import 'package:flutter_hi_http/http/dao/login_dao.dart';
 import 'package:flutter_hi_http/navigator/hi_navigator.dart';
+import 'package:flutter_hi_http/provider/hi_provider.dart';
 import 'package:flutter_hi_http/provider/theme_provider.dart';
 import 'package:flutter_hi_http/util/string_util.dart';
 import 'package:flutter_hi_http/util/toast.dart';
@@ -9,16 +10,17 @@ import 'package:flutter_hi_http/widget/appbar.dart';
 import 'package:flutter_hi_http/widget/login_button.dart';
 import 'package:flutter_hi_http/widget/login_effect.dart';
 import 'package:flutter_hi_http/widget/login_input.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:provider/provider.dart';
 
-class LoginPage extends StatefulWidget {
+class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  ConsumerState<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginPageState extends ConsumerState<LoginPage> {
   bool protect = false;
   bool loginEnable = false;
 
@@ -29,7 +31,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar("密码登录", "注册", () {
-        context.read<ThemeProvider>().setTheme(ThemeMode.dark);
+        ref.read(rTopProvider).setTheme(ThemeMode.dark);
         HiNavigator.getInstance().onJumpTo(RouteStatus.registration);
       }),
       body: Container(

@@ -6,22 +6,24 @@ import 'package:flutter_hi_http/model/home_mo.dart';
 import 'package:flutter_hi_http/model/video_model.dart';
 import 'package:flutter_hi_http/navigator/hi_navigator.dart';
 import 'package:flutter_hi_http/page/home_tab_page.dart';
+import 'package:flutter_hi_http/provider/hi_provider.dart';
 import 'package:flutter_hi_http/provider/theme_provider.dart';
 import 'package:flutter_hi_http/util/color.dart';
 import 'package:flutter_hi_http/util/toast.dart';
 import 'package:flutter_hi_http/util/view_util.dart';
 import 'package:flutter_hi_http/widget/hi_tab.dart';
 import 'package:flutter_hi_http/widget/navigation_bar.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:provider/provider.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends ConsumerStatefulWidget {
   // final ValueChanged<VideoModel>? onJumpToDetail;
   final ValueChanged<int>? onJumpTo;
 
   const HomePage({super.key, this.onJumpTo});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  ConsumerState<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends HiState<HomePage>
@@ -68,7 +70,7 @@ class _HomePageState extends HiState<HomePage>
   @override
   void didChangePlatformBrightness() {
     // TODO: implement didChangePlatformBrightness
-    context.read<ThemeProvider>().darModeChange();
+    ref.read(rTopProvider).darModeChange();
     super.didChangePlatformBrightness();
   }
 
@@ -85,7 +87,7 @@ class _HomePageState extends HiState<HomePage>
             statusStyle: StatusStyle.DARK_CONTENT,
           ),
           Container(
-            decoration: bottomBoxShadow(context),
+            decoration: bottomBoxShadow(ref),
             padding: EdgeInsets.only(),
             child: _tabBar(),
           ),

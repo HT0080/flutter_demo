@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hi_http/provider/hi_provider.dart';
 import 'package:flutter_hi_http/provider/theme_provider.dart';
 import 'package:flutter_hi_http/util/color.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:provider/provider.dart';
 
-class DarkModePage extends StatefulWidget {
+class DarkModePage extends ConsumerStatefulWidget {
   const DarkModePage({super.key});
 
   @override
-  State<DarkModePage> createState() => _DarkModePageState();
+  ConsumerState<DarkModePage> createState() => _DarkModePageState();
 }
 
-class _DarkModePageState extends State<DarkModePage> {
+class _DarkModePageState extends ConsumerState<DarkModePage> {
   static const _ITEMS = [
     {"name": "跟随系统", "mode": ThemeMode.system},
     {"name": "开启", "mode": ThemeMode.dark},
@@ -22,7 +24,7 @@ class _DarkModePageState extends State<DarkModePage> {
   void initState() {
     // TODO: implement initState
 
-    var themeMode = context.read<ThemeProvider>().getThemeMode();
+    var themeMode = ref.read(rTopProvider).getThemeMode();
 
     _ITEMS.forEach((element) {
       if (element['mode'] == themeMode) {
@@ -72,7 +74,7 @@ class _DarkModePageState extends State<DarkModePage> {
 
   void _switchTheme(int index) {
     var theme = _ITEMS[index];
-    context.read<ThemeProvider>().setTheme(theme['mode'] as ThemeMode);
+    ref.read(rTopProvider).setTheme(theme['mode'] as ThemeMode);
     setState(() {
       _currentTheme = theme;
     });

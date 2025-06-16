@@ -6,10 +6,12 @@ import 'package:flutter/services.dart';
 import 'package:flutter_hi_http/navigator/hi_navigator.dart';
 import 'package:flutter_hi_http/page/profile_page.dart';
 import 'package:flutter_hi_http/page/video_detail_page.dart';
+import 'package:flutter_hi_http/provider/hi_provider.dart';
 import 'package:flutter_hi_http/provider/theme_provider.dart';
 import 'package:flutter_hi_http/util/color.dart';
 import 'package:flutter_hi_http/util/format_util.dart';
 import 'package:flutter_hi_http/widget/navigation_bar.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:provider/provider.dart';
 
 Widget cachedImage(String url, {double width = 0, double height = 0}) {
@@ -118,8 +120,8 @@ SizedBox hiSpace({double height = 1, double width = 1}) {
 }
 
 // 底部阴影
-BoxDecoration? bottomBoxShadow(BuildContext context) {
-  var thmemeProvider = context.watch<ThemeProvider>();
+BoxDecoration? bottomBoxShadow(WidgetRef ref) {
+  var thmemeProvider = ref.watch(rTopProvider);
 
   if (thmemeProvider.isDark()) {
     return null;

@@ -3,10 +3,12 @@ import 'package:flutter_hi_http/core/hi_state.dart';
 import 'package:flutter_hi_http/http/core/hi_error.dart';
 import 'package:flutter_hi_http/util/color.dart';
 import 'package:flutter_hi_http/util/toast.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///通用底层带分页和刷新的页面框架
 ///M为Dao返回数据模型，L为列表数据模型，T为具体widget
-abstract class HiBaseTabState<M, L, T extends StatefulWidget> extends HiState<T>
+abstract class HiBaseTabState<M, L, T extends ConsumerStatefulWidget>
+    extends HiState<T>
     with AutomaticKeepAliveClientMixin {
   List<L> dataList = [];
   int pageIndex = 1;

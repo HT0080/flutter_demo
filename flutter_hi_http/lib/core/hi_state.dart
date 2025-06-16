@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /// 页面状态异常管理
-abstract class HiState<T extends StatefulWidget> extends State<T> {
+abstract class HiState<T extends ConsumerStatefulWidget>
+    extends ConsumerState<T> {
   @override
   void setState(VoidCallback fn) {
     if (mounted) {

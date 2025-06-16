@@ -5,15 +5,16 @@ import 'package:flutter_hi_http/page/ranking_tab_page.dart';
 import 'package:flutter_hi_http/util/view_util.dart';
 import 'package:flutter_hi_http/widget/hi_tab.dart';
 import 'package:flutter_hi_http/widget/navigation_bar.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class RankingPage extends StatefulWidget {
+class RankingPage extends ConsumerStatefulWidget {
   const RankingPage({super.key});
 
   @override
-  State<RankingPage> createState() => _RankingPageState();
+  ConsumerState<RankingPage> createState() => _RankingPageState();
 }
 
-class _RankingPageState extends State<RankingPage>
+class _RankingPageState extends ConsumerState<RankingPage>
     with TickerProviderStateMixin {
   static const TABS = [
     {"key": "like", "name": "最热"},
@@ -40,7 +41,7 @@ class _RankingPageState extends State<RankingPage>
   _buildNavigationBar() {
     return HNavigationBar(
       child: Container(
-        decoration: bottomBoxShadow(context),
+        decoration: bottomBoxShadow(ref),
         alignment: Alignment.center,
         child: _tabBar(),
       ),

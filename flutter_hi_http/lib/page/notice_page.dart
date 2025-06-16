@@ -4,12 +4,13 @@ import 'package:flutter_hi_http/http/dao/notice_dao.dart';
 import 'package:flutter_hi_http/model/home_mo.dart';
 import 'package:flutter_hi_http/model/notice_mo.dart';
 import 'package:flutter_hi_http/widget/notice_card.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class NoticePage extends StatefulWidget {
+class NoticePage extends ConsumerStatefulWidget {
   const NoticePage({super.key});
 
   @override
-  State<NoticePage> createState() => _NoticePageState();
+  ConsumerState<NoticePage> createState() => _NoticePageState();
 }
 
 class _NoticePageState extends HiBaseTabState<NoticeMo, BannerMo, NoticePage> {

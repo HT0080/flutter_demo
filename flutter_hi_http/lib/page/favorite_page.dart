@@ -8,12 +8,13 @@ import 'package:flutter_hi_http/page/video_detail_page.dart';
 import 'package:flutter_hi_http/util/view_util.dart';
 import 'package:flutter_hi_http/widget/navigation_bar.dart';
 import 'package:flutter_hi_http/widget/video_large_card.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class FavoritePage extends StatefulWidget {
+class FavoritePage extends ConsumerStatefulWidget {
   const FavoritePage({super.key});
 
   @override
-  State<FavoritePage> createState() => _FavoritePageState();
+  ConsumerState<FavoritePage> createState() => _FavoritePageState();
 }
 
 class _FavoritePageState
@@ -76,7 +77,7 @@ class _FavoritePageState
   _buildNavigationBar() {
     return HNavigationBar(
       child: Container(
-        decoration: bottomBoxShadow(context),
+        decoration: bottomBoxShadow(ref),
         alignment: Alignment.center,
         child: Text('收藏', style: TextStyle(fontSize: 16)),
       ),
