@@ -16,9 +16,10 @@ class VideoCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var thmemeProvider = ref.watch(rTopProvider);
+    // var thmemeProvider = ref.watch(rTopProvider);
+    final themeNotifier = ref.read(rTopProvider.notifier);
 
-    Color textColor = thmemeProvider.isDark() ? Colors.white70 : Colors.black87;
+    Color textColor = themeNotifier.isDark() ? Colors.white70 : Colors.black87;
 
     return InkWell(
       onTap: () {

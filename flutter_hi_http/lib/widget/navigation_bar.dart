@@ -33,9 +33,10 @@ class _HNavigationBarState extends ConsumerState<HNavigationBar> {
   late Color _color;
   @override
   Widget build(BuildContext context) {
-    var thmemeProvider = ref.watch(rTopProvider);
+    // var thmemeProvider = ref.watch(rTopProvider);
+    final themeNotifier = ref.read(rTopProvider.notifier);
 
-    if (thmemeProvider.isDark()) {
+    if (themeNotifier.isDark()) {
       _color = HiColor.dark_bg;
       _statusStyle = StatusStyle.LIGHT_CONTENT;
     } else {

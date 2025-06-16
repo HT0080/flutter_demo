@@ -23,9 +23,8 @@ class _DarkModePageState extends ConsumerState<DarkModePage> {
   @override
   void initState() {
     // TODO: implement initState
-
-    var themeMode = ref.read(rTopProvider).getThemeMode();
-
+    super.initState();
+    final themeMode = ref.read(rTopProvider);
     _ITEMS.forEach((element) {
       if (element['mode'] == themeMode) {
         _currentTheme = element;
@@ -74,7 +73,9 @@ class _DarkModePageState extends ConsumerState<DarkModePage> {
 
   void _switchTheme(int index) {
     var theme = _ITEMS[index];
-    ref.read(rTopProvider).setTheme(theme['mode'] as ThemeMode);
+    final themeNotifier = ref.read(rTopProvider.notifier);
+    // ref.read(rTopProvider).setTheme(theme['mode'] as ThemeMode);
+    themeNotifier.setTheme(theme['mode'] as ThemeMode);
     setState(() {
       _currentTheme = theme;
     });

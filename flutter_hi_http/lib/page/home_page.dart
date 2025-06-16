@@ -70,7 +70,9 @@ class _HomePageState extends HiState<HomePage>
   @override
   void didChangePlatformBrightness() {
     // TODO: implement didChangePlatformBrightness
-    ref.read(rTopProvider).darModeChange();
+    final themeNotifier = ref.read(rTopProvider.notifier);
+    // ref.read(rTopProvider).darModeChange();
+    themeNotifier.darkModeChanged();
     super.didChangePlatformBrightness();
   }
 

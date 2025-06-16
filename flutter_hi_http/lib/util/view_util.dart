@@ -121,12 +121,28 @@ SizedBox hiSpace({double height = 1, double width = 1}) {
 
 // 底部阴影
 BoxDecoration? bottomBoxShadow(WidgetRef ref) {
-  var thmemeProvider = ref.watch(rTopProvider);
+  // var thmemeProvider = ref.watch(rTopProvider);
+  final themeNotifier = ref.read(rTopProvider.notifier);
 
-  if (thmemeProvider.isDark()) {
+  if (themeNotifier.isDark()) {
     return null;
   }
 
+  return BoxDecoration(
+    color: Colors.white,
+    boxShadow: [
+      BoxShadow(
+        color: Colors.grey[100]!,
+        offset: Offset(0, 5), // xy轴偏移
+        blurRadius: 5.0, // 阴影模糊程度
+        spreadRadius: 1, // 阴影扩散程度
+      ),
+    ],
+  );
+}
+
+BoxDecoration? hBottomBoxShadow(bool isDark) {
+  if (isDark) return null;
   return BoxDecoration(
     color: Colors.white,
     boxShadow: [

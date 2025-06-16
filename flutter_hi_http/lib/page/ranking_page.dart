@@ -2,19 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hi_http/http/dao/ranking_dao.dart';
 import 'package:flutter_hi_http/navigator/hi_navigator.dart';
 import 'package:flutter_hi_http/page/ranking_tab_page.dart';
+import 'package:flutter_hi_http/provider/hi_provider.dart';
 import 'package:flutter_hi_http/util/view_util.dart';
 import 'package:flutter_hi_http/widget/hi_tab.dart';
 import 'package:flutter_hi_http/widget/navigation_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class RankingPage extends ConsumerStatefulWidget {
+class RankingPage extends StatefulWidget {
   const RankingPage({super.key});
 
   @override
-  ConsumerState<RankingPage> createState() => _RankingPageState();
+  State<RankingPage> createState() => _RankingPageState();
 }
 
-class _RankingPageState extends ConsumerState<RankingPage>
+class _RankingPageState extends State<RankingPage>
     with TickerProviderStateMixin {
   static const TABS = [
     {"key": "like", "name": "最热"},
@@ -40,10 +41,16 @@ class _RankingPageState extends ConsumerState<RankingPage>
 
   _buildNavigationBar() {
     return HNavigationBar(
-      child: Container(
-        decoration: bottomBoxShadow(ref),
-        alignment: Alignment.center,
-        child: _tabBar(),
+      child: Consumer(
+        builder: (context, ref, _) {
+          // var thmemeProvider = ref.watch(rTopProvider);
+          final themeNotifier = ref.read(rTopProvider.notifier);
+          return Container(
+            decoration: hBottomBoxShadow(themeNotifier.isDark()),
+            alignment: Alignment.center,
+            child: _tabBar(),
+          );
+        },
       ),
     );
   }

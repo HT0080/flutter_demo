@@ -41,7 +41,7 @@ class BiliApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final themeProvider = rTopProvider;
+    // final themeProvider = rTopProvider;
 
     return FutureBuilder<HiCache>(
       future: HiCache.preInit(),
@@ -52,13 +52,15 @@ class BiliApp extends ConsumerWidget {
                 : Scaffold(body: Center(child: CircularProgressIndicator()));
         return Consumer(
           builder: (context, ref, child) {
-            final themeProviderState = ref.watch(themeProvider);
+            final themeProviderState = ref.watch(rTopProvider);
+            final themeNotifier = ref.read(rTopProvider.notifier);
+            // final themData = themeNotifier.getThemeData();
 
             return MaterialApp(
               home: widget,
-              theme: themeProviderState.getTheme(),
-              darkTheme: themeProviderState.getTheme(isDarkMode: true),
-              themeMode: themeProviderState.getThemeMode(),
+              theme: themeNotifier.getThemeData(),
+              darkTheme: themeNotifier.getThemeData(forceDark: true),
+              themeMode: themeProviderState,
             );
           },
         );

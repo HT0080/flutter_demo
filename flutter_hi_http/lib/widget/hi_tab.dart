@@ -25,9 +25,10 @@ class HiTab extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var thmemeProvider = ref.watch(rTopProvider);
+    // var thmemeProvider = ref.watch(rTopProvider);
+    final themeNotifier = ref.read(rTopProvider.notifier);
     Color _unselectedLabelColor =
-        thmemeProvider.isDark() ? Colors.white70 : unselectedLabelColor;
+        themeNotifier.isDark() ? Colors.white70 : unselectedLabelColor;
 
     return TabBar(
       controller: controller,

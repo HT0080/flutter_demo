@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_hi_http/provider/theme_provider.dart';
+import 'package:flutter_hi_http/provider/theme_riverpod.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:provider/provider.dart' as HProvider;
 import 'package:provider/single_child_widget.dart';
 
 // List<SingleChildWidget> topProviders = [
@@ -10,6 +11,9 @@ import 'package:provider/single_child_widget.dart';
 //   ),
 // ];
 
-final rTopProvider = ChangeNotifierProvider<ThemeProvider>((ref) {
-  return ThemeProvider();
-});
+// final rTopProvider = ChangeNotifierProvider<ThemeProvider>((ref) {
+//   return ThemeProvider();
+// });
+final rTopProvider = NotifierProvider<ThemeNotifier, ThemeMode>(
+  ThemeNotifier.new,
+);

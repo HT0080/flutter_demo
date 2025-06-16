@@ -31,7 +31,9 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar("密码登录", "注册", () {
-        ref.read(rTopProvider).setTheme(ThemeMode.dark);
+        final themeNotifier = ref.read(rTopProvider.notifier);
+        // ref.read(rTopProvider).setTheme(ThemeMode.dark);
+        themeNotifier.setTheme(ThemeMode.dark);
         HiNavigator.getInstance().onJumpTo(RouteStatus.registration);
       }),
       body: Container(

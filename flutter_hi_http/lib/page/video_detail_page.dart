@@ -119,10 +119,11 @@ class _VideoDetailPageState extends ConsumerState<VideoDetailPage>
   }
 
   _buildTabNavigation() {
-    var thmemeProvider = ref.watch(rTopProvider);
+    // var thmemeProvider = ref.watch(rTopProvider);
+    final themeNotifier = ref.read(rTopProvider.notifier);
 
     return Material(
-      elevation: thmemeProvider.isDark() ? 1 : 5,
+      elevation: themeNotifier.isDark() ? 1 : 5,
       shadowColor: Colors.grey[100],
       child: Container(
         alignment: Alignment.centerLeft,

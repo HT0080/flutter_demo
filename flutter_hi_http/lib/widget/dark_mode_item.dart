@@ -11,9 +11,10 @@ class DarkModeItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var themeProvider = ref.watch(rTopProvider);
+    // var themeProvider = ref.watch(rTopProvider);
+    final themeNotifier = ref.read(rTopProvider.notifier);
     var icon =
-        themeProvider.isDark()
+        themeNotifier.isDark()
             ? Icons.nightlight_round
             : Icons.wb_sunny_rounded;
 
