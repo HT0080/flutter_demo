@@ -70,7 +70,7 @@ class ThemeProvider extends ChangeNotifier {
         surface: isDarkMode ? HiColor.dark_bg : white,
         onSurface: isDarkMode ? white : HiColor.dark_bg,
       ),
-      cardTheme: CardTheme(color: isDarkMode ? Colors.grey : white),
+      cardTheme: CardThemeData(color: isDarkMode ? Colors.grey : white),
       // tab指示器的Color
       indicatorColor: isDarkMode ? primary[50] : white,
       // 页面背景色

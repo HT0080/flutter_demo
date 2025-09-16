@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <style>
+           .box{
+            height: 100px;
+            width: 100px;
+            background-color: blue;
+           } 
+        </style>
+    </head>
+    <body>
+        <div class="box"></div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.0/gsap.min.js"></script>
+        <script>
+            gsap.to('.box',{
+                x:100,
+                duration:1
+            })
+        </script>
+    </body>
+</html>

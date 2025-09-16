@@ -78,7 +78,7 @@ class ThemeNotifier extends Notifier<ThemeMode> {
         surface: isDarkMode ? HiColor.dark_bg : white,
         onSurface: isDarkMode ? white : HiColor.dark_bg,
       ),
-      cardTheme: CardTheme(color: isDarkMode ? Colors.grey : white),
+      cardTheme: CardThemeData(color: isDarkMode ? Colors.grey : white),
       indicatorColor: isDarkMode ? primary[50] : white,
       scaffoldBackgroundColor: isDarkMode ? HiColor.dark_bg : white,
       dividerTheme: DividerThemeData(

@@ -4,6 +4,7 @@ import 'package:flutter_hi_http/provider/hi_provider.dart';
 import 'package:flutter_hi_http/provider/theme_provider.dart';
 import 'package:flutter_hi_http/util/view_util.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class DarkModeItem extends ConsumerWidget {
@@ -20,7 +21,8 @@ class DarkModeItem extends ConsumerWidget {
 
     return InkWell(
       onTap: () {
-        HiNavigator.getInstance().onJumpTo(RouteStatus.darkMode);
+        // HiNavigator.getInstance().onJumpTo(RouteStatus.darkMode);
+        context.push("/dark");
       },
       child: Container(
         padding: EdgeInsets.only(top: 10, left: 15, bottom: 15),
